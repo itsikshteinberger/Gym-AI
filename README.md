@@ -1,1 +1,3 @@
-# Gym-AI
+# GymAI
+
+Coming soon
