@@ -1,3 +1,3 @@
 # GymAI
 
-Coming soon
+Coming soon.
