@@ -1,6 +1,9 @@
 import cv2
+from matplotlib.pyplot import get
+from numpy.lib.function_base import angle
 from DetectorModel import Detector
 from config import PoseNames
+from Utils import *
 
 def LandMarks(results): #This function returns a dictonary with all poses info (x,y,z,visibility)
 
@@ -27,8 +30,8 @@ while cap.isOpened():
     results, image = model.Detection(image)
 
     try:
-        print(LandMarks(results)["NOSE"])
-        #print(LandMarks(results)["NOSE"].x)
+        #Hola Daniel! Checkout the Utils.py
+        print(LandMarks(results)['LEFT_WRIST'])
     except:
         pass
 
