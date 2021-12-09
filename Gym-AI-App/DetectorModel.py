@@ -6,13 +6,14 @@ import mediapipe as mp
 import numpy as np
 from PIL import Image
 from matplotlib import pyplot as plt
+from config import *
 
 class Detector:
     def __init__(self):
         self.mp_drawing = mp.solutions.drawing_utils #For visualisation
         self.mp_pose = mp.solutions.pose #Pose estimation model
 
-        self.pose = self.mp_pose.Pose( min_detection_confidence = 0.5, min_tracking_confidence = 0.5)
+        self.pose = self.mp_pose.Pose( min_detection_confidence = min_detection_confidence, min_tracking_confidence = min_tracking_confidence)
 
         self.cap = cv2.VideoCapture(0) #Connect to webCam
 
@@ -26,8 +27,8 @@ class Detector:
 
         self.mp_drawing.draw_landmarks( 
             image, results.pose_landmarks, self.mp_pose.POSE_CONNECTIONS, 
-            self.mp_drawing.DrawingSpec(color = (254,117,66), thickness=2, circle_radius = 2),
-            self.mp_drawing.DrawingSpec(color = (254,66,230), thickness=2, circle_radius = 2)
+            self.mp_drawing.DrawingSpec(color = PointsColor, thickness=thickness, circle_radius = circle_radius),
+            self.mp_drawing.DrawingSpec(color = LinesColor, thickness=thickness, circle_radius = circle_radius)
         )
 
         if (visualize):
@@ -35,5 +36,8 @@ class Detector:
             plt.show()
 
         return results, image
-        
 
+    def landmarks_keys(self):
+        return self.mp_pose.PoseLandmark
+        
+    
