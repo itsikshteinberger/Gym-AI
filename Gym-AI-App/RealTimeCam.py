@@ -36,7 +36,8 @@ while cap.isOpened():
         #Just checking..    
         image[0:30,0:30,:] = CalculateAngle(LandMarks(results)['LEFT_SHOULDER'],LandMarks(results)['LEFT_ELBOW'],LandMarks(results)['LEFT_WRIST'],image.shape)
         print(CalculateAngle(LandMarks(results)['LEFT_SHOULDER'],LandMarks(results)['LEFT_ELBOW'],LandMarks(results)['LEFT_WRIST'],image.shape))
-    
+        #Eend of checking
+        
     except:
         pass
 
