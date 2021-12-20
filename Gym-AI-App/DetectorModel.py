@@ -35,6 +35,8 @@ class Detector:
             plt.imshow(image, interpolation='nearest')
             plt.show()
 
+        image = np.fliplr(image)
+
         return results, image
 
     def landmarks_keys(self):

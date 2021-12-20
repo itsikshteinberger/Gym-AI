@@ -4,6 +4,7 @@ from numpy.lib.function_base import angle
 from DetectorModel import Detector
 from config import PoseNames
 from Utils import *
+import numpy as np
 
 def LandMarks(results): #This function returns a dictonary with all poses info (x,y,z,visibility)
 
@@ -29,9 +30,14 @@ while cap.isOpened():
 
     results, image = model.Detection(image)
 
+    
     try:
-        #Hola Daniel! Checkout the Utils.py
-        print(LandMarks(results)['LEFT_WRIST'])
+
+        #Just checking..    
+        image[0:30,0:30,:] = CalculateAngle(LandMarks(results)['LEFT_SHOULDER'],LandMarks(results)['LEFT_ELBOW'],LandMarks(results)['LEFT_WRIST'],image.shape)
+        print(CalculateAngle(LandMarks(results)['LEFT_SHOULDER'],LandMarks(results)['LEFT_ELBOW'],LandMarks(results)['LEFT_WRIST'],image.shape))
+        #Eend of checking
+        
     except:
         pass
 
