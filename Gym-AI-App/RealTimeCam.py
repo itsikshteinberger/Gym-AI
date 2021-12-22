@@ -30,6 +30,18 @@ while cap.isOpened():
 
     results, image = model.Detection(image)
 
+    #current degrees, saved in the correct cells based of "AnglesArray", in config
+    CurrentDegrees = [CalculateAngle(LandMarks(results)['LEFT_ELBOW'],LandMarks(results)['LEFT_SHOULDER'],LandMarks(results)['LEFT_HIP'],image.shape),
+                    CalculateAngle(LandMarks(results)['RIGHT_ELBOW'],LandMarks(results)['RIGHT_SHOULDER'],LandMarks(results)['RIGHT_HIP'],image.shape),
+                    CalculateAngle(LandMarks(results)['RIGHT_SHOULDER'],LandMarks(results)['RIGHT_HIP'],LandMarks(results)['RIGHT_KNEE'],image.shape),
+                    CalculateAngle(LandMarks(results)['LEFT_SHOULDER'],LandMarks(results)['LEFT_HIP'],LandMarks(results)['LEFT_KNEE'],image.shape),
+                    CalculateAngle(LandMarks(results)['LEFT_HIP'],LandMarks(results)['LEFT_KNEE'],LandMarks(results)['LEFT_ANKLE'],image.shape),
+                    CalculateAngle(LandMarks(results)['RIGHT_HIP'],LandMarks(results)['RIGHT_KNEE'],LandMarks(results)['RIGHT_ANKLE'],image.shape),
+                    CalculateAngle(LandMarks(results)['RIGHT_KNEE'],LandMarks(results)['RIGHT_ANKLE'],LandMarks(results)['RIGHT_HEEL'],image.shape),
+                    CalculateAngle(LandMarks(results)['LEFT_KNEE'],LandMarks(results)['LEFT_ANKLE'],LandMarks(results)['LEFT_HEEL'],image.shape),
+                    CalculateAngle(LandMarks(results)['LEFT_SHOULDER'],LandMarks(results)['LEFT_ELBOW'],LandMarks(results)['LEFT_WRIST'],image.shape),
+                    CalculateAngle(LandMarks(results)['RIGHT_SHOULDER'],LandMarks(results)['RIGHT_ELBOW'],LandMarks(results)['RIGHT_WRIST'],image.shape)]
+
     
     try:
 
