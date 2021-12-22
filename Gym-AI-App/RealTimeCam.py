@@ -5,6 +5,7 @@ from DetectorModel import Detector
 from config import PoseNames
 from Utils import *
 import numpy as np
+from CheckPose import *
 
 def LandMarks(results): #This function returns a dictonary with all poses info (x,y,z,visibility)
 
@@ -31,7 +32,15 @@ while cap.isOpened():
     results, image = model.Detection(image)
 
     #current degrees, saved in the correct cells based of "AnglesArray", in config
-    CurrentDegrees = [CalculateAngle(LandMarks(results)['LEFT_ELBOW'],LandMarks(results)['LEFT_SHOULDER'],LandMarks(results)['LEFT_HIP'],image.shape),
+    
+
+    
+    try:
+
+        #Just checking..    
+        image[0:30,0:30,:] = CalculateAngle(LandMarks(results)['LEFT_SHOULDER'],LandMarks(results)['LEFT_ELBOW'],LandMarks(results)['LEFT_WRIST'],image.shape)
+        #print(CalculateAngle(LandMarks(results)['LEFT_SHOULDER'],LandMarks(results)['LEFT_ELBOW'],LandMarks(results)['LEFT_WRIST'],image.shape))
+        CurrentDegrees = [CalculateAngle(LandMarks(results)['LEFT_ELBOW'],LandMarks(results)['LEFT_SHOULDER'],LandMarks(results)['LEFT_HIP'],image.shape),
                     CalculateAngle(LandMarks(results)['RIGHT_ELBOW'],LandMarks(results)['RIGHT_SHOULDER'],LandMarks(results)['RIGHT_HIP'],image.shape),
                     CalculateAngle(LandMarks(results)['RIGHT_SHOULDER'],LandMarks(results)['RIGHT_HIP'],LandMarks(results)['RIGHT_KNEE'],image.shape),
                     CalculateAngle(LandMarks(results)['LEFT_SHOULDER'],LandMarks(results)['LEFT_HIP'],LandMarks(results)['LEFT_KNEE'],image.shape),
@@ -41,14 +50,9 @@ while cap.isOpened():
                     CalculateAngle(LandMarks(results)['LEFT_KNEE'],LandMarks(results)['LEFT_ANKLE'],LandMarks(results)['LEFT_HEEL'],image.shape),
                     CalculateAngle(LandMarks(results)['LEFT_SHOULDER'],LandMarks(results)['LEFT_ELBOW'],LandMarks(results)['LEFT_WRIST'],image.shape),
                     CalculateAngle(LandMarks(results)['RIGHT_SHOULDER'],LandMarks(results)['RIGHT_ELBOW'],LandMarks(results)['RIGHT_WRIST'],image.shape)]
-
-    
-    try:
-
-        #Just checking..    
-        image[0:30,0:30,:] = CalculateAngle(LandMarks(results)['LEFT_SHOULDER'],LandMarks(results)['LEFT_ELBOW'],LandMarks(results)['LEFT_WRIST'],image.shape)
-        print(CalculateAngle(LandMarks(results)['LEFT_SHOULDER'],LandMarks(results)['LEFT_ELBOW'],LandMarks(results)['LEFT_WRIST'],image.shape))
-        #Eend of checking
+        print(CurrentDegrees)
+        print(CheckPose('Squat', CurrentDegrees, '1'))
+        #End of checking
         
     except:
         pass
