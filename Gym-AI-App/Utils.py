@@ -73,8 +73,34 @@ def getSecondAngle(excel_string):#function that gets the second angle from the s
 
     return int(toReturn)
 
+def getRoundedDegree(degree): #functon that rounds out the degree to a divisive of 5
+    if degree%10 == 0:
+        return int(degree)
+    if degree%10 > 7.5:
+        return int(degree+(10-(degree%10)))
+    if degree%10 <= 7.5 and degree%10 > 5:
+        return int(degree-((degree%10) - 5))
+    if degree%10 == 5:
+        return int(degree)
+    if degree%10 < 5 and degree%10 >= 2.5:
+        return int(degree+(5-(degree%10)))
+    if degree%10 < 2.5 and degree%10 > 0:
+        return int(degree-degree%10)
+    
 
 
+def getAngleString(degree): #function that recieves a degree, and returns a string in the format of "{degree-15}<X<{degree+15}"
+    if degree < 15:
+        return (f"0<X<{degree+15}")
+    else:
+        return(f"{degree-15}<X<{degree+15}")
+    
+
+def convertArrayToCsvRow(DegreeArray): #this function gets an array that was taken by the camera, and converts to a row to be used in the csv
+    toReturn = []
+    for degree in DegreeArray:
+        toReturn.append(getAngleString(getRoundedDegree(degree)))
+    return toReturn
 
 
 
