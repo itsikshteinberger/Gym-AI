@@ -9,7 +9,7 @@ import numpy as np
 import config
 
 #importing the csv file
-df = pd.read_csv('Gym-AI-App/pose_degrees.csv', index_col=0)
+df = pd.read_csv('Gym-AI/Gym-AI-App/pose_degrees.csv', index_col=0)
 
 #Angles Array
 AnglesArray = ['13_11_23',

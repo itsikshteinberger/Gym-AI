@@ -19,7 +19,7 @@ def addPose(exercise, DegreeArray1, DegreeArray2):
         # and get a writer object
         writer_object = writer(f_object)
         
-    
+        print(fullRow)
         # Pass the list as an argument into
         # the writerow()
         writer_object.writerow(fullRow)
